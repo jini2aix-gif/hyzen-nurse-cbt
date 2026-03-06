@@ -24,15 +24,30 @@ const CBTExam = ({ questions, onFinish }) => {
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [showFeedback, setShowFeedback] = useState(false);
   const [wrongNotes, setWrongNotes] = useState([]);
-  const [timeLeft, setTimeLeft] = useState(6000); // 100 minutes
+  const [timeLeft, setTimeLeft] = useState(60); // 1 minute per question
   const [showDrawer, setShowDrawer] = useState(false); // Mobile drawer state
 
   useEffect(() => {
+    if (showFeedback) return;
+
     const timer = setInterval(() => {
-      setTimeLeft(prev => (prev > 0 ? prev - 1 : 0));
+      setTimeLeft(prev => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          handleTimeOut();
+          return 0;
+        }
+        return prev - 1;
+      });
     }, 1000);
     return () => clearInterval(timer);
-  }, []);
+  }, [showFeedback, currentIndex]);
+
+  const handleTimeOut = () => {
+    if (!showFeedback) {
+      handleSelect(-1); // -1 signifies a timeout
+    }
+  };
 
   const currentQ = questions[currentIndex];
 
@@ -55,6 +70,7 @@ const CBTExam = ({ questions, onFinish }) => {
     if (currentIndex < questions.length - 1) {
       setCurrentIndex(currentIndex + 1);
       setShowFeedback(false);
+      setTimeLeft(60);
     } else {
       onFinish(selectedAnswers, wrongNotes);
     }
@@ -74,9 +90,6 @@ const CBTExam = ({ questions, onFinish }) => {
           <button className="btn-secondary" onClick={() => setShowDrawer(!showDrawer)}>
             {showDrawer ? '닫기 ✖️' : '문항보기 📋'}
           </button>
-          <div className="glass-card timer-display">
-            ⏱️ {formatTime(timeLeft)}
-          </div>
         </div>
       </div>
 
@@ -88,7 +101,7 @@ const CBTExam = ({ questions, onFinish }) => {
               <button
                 key={idx}
                 className={`nav-item ${currentIndex === idx ? 'active' : ''} ${selectedAnswers[idx] !== undefined ? 'solved' : ''}`}
-                onClick={() => { setCurrentIndex(idx); setShowFeedback(false); setShowDrawer(false); }}
+                onClick={() => { setCurrentIndex(idx); setShowFeedback(false); setShowDrawer(false); setTimeLeft(60); }}
               >
                 {idx + 1}
               </button>
@@ -97,8 +110,11 @@ const CBTExam = ({ questions, onFinish }) => {
         </div>
 
         <div className="question-area glass-card">
-          <div style={{ marginBottom: '1rem', color: 'var(--text-dim)', fontSize: '0.9rem' }}>
-            {currentQ.category} | {currentIndex + 1} / {questions.length}
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem', color: 'var(--text-dim)', fontSize: '0.9rem' }}>
+            <span>{currentQ.category} | {currentIndex + 1} / {questions.length}</span>
+            <span style={{ color: timeLeft <= 10 ? '#ef4444' : 'var(--text-dim)', fontWeight: 'bold' }}>
+              남은 시간: {timeLeft}초
+            </span>
           </div>
           <h2 style={{ fontSize: '1.5rem', lineHeight: '1.4', marginBottom: '1.5rem' }}>
             {currentQ.question}
@@ -119,7 +135,11 @@ const CBTExam = ({ questions, onFinish }) => {
           {showFeedback && (
             <div className={`feedback ${selectedAnswers[currentIndex] === currentQ.answer ? 'correct' : 'wrong'}`}>
               <h3 style={{ marginBottom: '0.8rem' }}>
-                {selectedAnswers[currentIndex] === currentQ.answer ? '✅ 정답입니다!' : '❌ 아쉬워요!'}
+                {selectedAnswers[currentIndex] === currentQ.answer
+                  ? '✅ 정답입니다!'
+                  : selectedAnswers[currentIndex] === -1
+                    ? '⏰ 시간 초과!'
+                    : '❌ 아쉬워요!'}
               </h3>
               <div style={{ marginBottom: '1.5rem', padding: '1rem', background: 'rgba(255, 255, 255, 0.05)', borderRadius: '12px', border: '1px solid var(--glass-border)' }}>
                 <p style={{ fontSize: '1.1rem', marginBottom: '0.5rem' }}>
