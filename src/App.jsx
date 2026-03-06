@@ -6,7 +6,7 @@ const Intro = ({ onStart }) => (
   <div className="container fade-in">
     <div className="glass-card" style={{ padding: '4rem', textAlign: 'center', marginTop: '10vh' }}>
       <h1 style={{ fontSize: '3rem', marginBottom: '1rem', background: 'linear-gradient(135deg, #fff, #94a3b8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-        效珍쌤의 <br />간호조무사 CBT 실전모의고사 💉
+        효진쌤의 <br />간호조무사 CBT 실전모의고사 💉
       </h1>
       <p style={{ color: 'var(--text-dim)', marginBottom: '3rem', fontSize: '1.2rem' }}>
         30년 경력의 베테랑이 엄선한 2025 최신 트렌드 반영 문항! <br />
