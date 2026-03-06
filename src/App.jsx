@@ -118,12 +118,17 @@ const CBTExam = ({ questions, onFinish }) => {
 
           {showFeedback && (
             <div className={`feedback ${selectedAnswers[currentIndex] === currentQ.answer ? 'correct' : 'wrong'}`}>
-              <h3 style={{ marginBottom: '0.5rem' }}>
+              <h3 style={{ marginBottom: '0.8rem' }}>
                 {selectedAnswers[currentIndex] === currentQ.answer ? '✅ 정답입니다!' : '❌ 아쉬워요!'}
               </h3>
-              <p style={{ marginBottom: '1rem' }}>{currentQ.explanation}</p>
-              <div style={{ background: 'rgba(255, 255, 255, 0.05)', padding: '1rem', borderRadius: '8px', borderLeft: '4px solid var(--primary)' }}>
-                <strong>💡 제니쌤의 암기 팁:</strong> {currentQ.tip}
+              <div style={{ marginBottom: '1.5rem', padding: '1rem', background: 'rgba(255, 255, 255, 0.05)', borderRadius: '12px', border: '1px solid var(--glass-border)' }}>
+                <p style={{ fontSize: '1.1rem', marginBottom: '0.5rem' }}>
+                  <strong>🎯 정답: {currentQ.choices[currentQ.answer - 1]}</strong>
+                </p>
+                <p style={{ color: 'var(--text-dim)', lineHeight: '1.5' }}>{currentQ.explanation}</p>
+              </div>
+              <div style={{ background: 'rgba(99, 102, 241, 0.1)', padding: '1rem', borderRadius: '12px', borderLeft: '5px solid var(--primary)' }}>
+                <strong>💡 제니쌤의 암기 비법:</strong> {currentQ.tip}
               </div>
               <button className="btn-primary" style={{ marginTop: '1.5rem', width: '100%' }} onClick={nextQuestion}>
                 {currentIndex === questions.length - 1 ? '결과 확인하기' : '다음 문제로'}
@@ -173,9 +178,17 @@ function App() {
   const [wrongNoteIds, setWrongNoteIds] = useState([]);
 
   const startNewExam = () => {
-    const shuffled = [...questionsData].sort(() => 0.5 - Math.random());
-    setActiveQuestions(shuffled.slice(0, 105));
+    // 105 unique random questions from the 315 pool
+    const pool = [...questionsData];
+    const shuffled = [];
+    while (shuffled.length < 105 && pool.length > 0) {
+      const randomIndex = Math.floor(Math.random() * pool.length);
+      shuffled.push(pool.splice(randomIndex, 1)[0]);
+    }
+    setActiveQuestions(shuffled);
     setMode('quiz');
+    setFinalScore(0);
+    setWrongNoteIds([]);
   };
 
   const finishExam = (answers, wrongIds) => {
