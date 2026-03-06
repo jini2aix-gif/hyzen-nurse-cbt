@@ -25,6 +25,7 @@ const CBTExam = ({ questions, onFinish }) => {
   const [showFeedback, setShowFeedback] = useState(false);
   const [wrongNotes, setWrongNotes] = useState([]);
   const [timeLeft, setTimeLeft] = useState(6000); // 100 minutes
+  const [showDrawer, setShowDrawer] = useState(false); // Mobile drawer state
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -69,20 +70,25 @@ const CBTExam = ({ questions, onFinish }) => {
     <div className="container fade-in" style={{ padding: '1rem' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
         <h2 style={{ color: 'var(--secondary)' }}>CBT 실전 모의고사 📝</h2>
-        <div className="glass-card" style={{ padding: '0.5rem 1.5rem', fontSize: '1.2rem', fontWeight: 'bold' }}>
-          남은 시간 ⏱️ {formatTime(timeLeft)}
+        <div style={{ display: 'flex', gap: '0.5rem' }}>
+          <button className="btn-secondary" onClick={() => setShowDrawer(!showDrawer)}>
+            {showDrawer ? '닫기 ✖️' : '문항보기 📋'}
+          </button>
+          <div className="glass-card timer-display">
+            ⏱️ {formatTime(timeLeft)}
+          </div>
         </div>
       </div>
 
-      <div className="cbt-layout">
-        <div className="nav-panel glass-card">
+      <div className={`cbt-layout ${showDrawer ? 'drawer-open' : ''}`}>
+        <div className={`nav-panel glass-card ${showDrawer ? 'visible' : ''}`}>
           <h3 style={{ marginBottom: '1rem' }}>문항 탐색기</h3>
           <div className="nav-grid">
             {questions.map((_, idx) => (
               <button
                 key={idx}
                 className={`nav-item ${currentIndex === idx ? 'active' : ''} ${selectedAnswers[idx] !== undefined ? 'solved' : ''}`}
-                onClick={() => { setCurrentIndex(idx); setShowFeedback(false); }}
+                onClick={() => { setCurrentIndex(idx); setShowFeedback(false); setShowDrawer(false); }}
               >
                 {idx + 1}
               </button>
