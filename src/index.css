@@ -200,6 +200,18 @@ button:active {
   }
 }
 
+@keyframes bounce-custom {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .btn-secondary {

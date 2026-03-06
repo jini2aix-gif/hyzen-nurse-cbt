@@ -4,8 +4,64 @@ import questionsData from './data/questions.json';
 
 const Intro = ({ onStart }) => (
   <div className="container fade-in">
-    <div className="glass-card" style={{ padding: '4rem', textAlign: 'center', marginTop: '10vh' }}>
-      <h1 style={{ fontSize: '3rem', marginBottom: '1rem', background: 'linear-gradient(135deg, #fff, #94a3b8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+    <div className="glass-card" style={{ padding: '4rem', textAlign: 'center', marginTop: '5vh', position: 'relative' }}>
+
+      {/* Cheering Image and Bubble */}
+      <div style={{ position: 'relative', display: 'inline-block', marginBottom: '2rem' }}>
+        <div style={{
+          position: 'absolute',
+          top: '-20px',
+          right: '-110px',
+          background: 'white',
+          color: '#1e293b',
+          padding: '12px 24px',
+          borderRadius: '20px',
+          fontWeight: 'bold',
+          fontSize: '1.2rem',
+          boxShadow: '0 8px 25px rgba(0,0,0,0.3)',
+          zIndex: 10,
+          animation: 'bounce-custom 2s infinite',
+          whiteSpace: 'nowrap'
+        }}>
+          영지 화이팅!! 💙
+          <div style={{
+            content: '""',
+            position: 'absolute',
+            bottom: '-12px',
+            left: '30px',
+            borderWidth: '12px 12px 0',
+            borderStyle: 'solid',
+            borderColor: 'white transparent transparent',
+            display: 'block',
+            width: 0
+          }}></div>
+        </div>
+
+        <div style={{
+          width: '160px',
+          height: '160px',
+          borderRadius: '50%',
+          overflow: 'hidden',
+          border: '5px solid var(--primary)',
+          boxShadow: '0 0 25px rgba(99, 102, 241, 0.6)',
+          background: '#e2e8f0',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
+          <img src="/cheer.png" alt="Cheer" style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'center 10%' // focuses towards top to capture face
+          }} onError={(e) => {
+            e.target.style.display = 'none';
+            e.target.parentElement.innerHTML = '<div style="font-size:4rem;">🏃‍♂️</div>';
+          }} />
+        </div>
+      </div>
+
+      <h1 style={{ fontSize: '3rem', marginBottom: '1rem', background: 'linear-gradient(135deg, #fff, #94a3b8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', lineHeight: '1.2' }}>
         효진쌤의 <br />간호조무사 CBT 실전모의고사 💉
       </h1>
       <p style={{ color: 'var(--text-dim)', marginBottom: '3rem', fontSize: '1.2rem' }}>
