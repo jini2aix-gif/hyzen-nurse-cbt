@@ -1,5 +1,6 @@
 import json
 import random
+import re
 
 def get_yt_questions():
     core_db = [
