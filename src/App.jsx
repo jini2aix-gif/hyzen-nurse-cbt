@@ -204,7 +204,7 @@ const CBTExam = ({ questions, onFinish }) => {
                 <p style={{ color: 'var(--text-dim)', lineHeight: '1.5' }}>{currentQ.explanation}</p>
               </div>
               <div style={{ background: 'rgba(99, 102, 241, 0.1)', padding: '1rem', borderRadius: '12px', borderLeft: '5px solid var(--primary)' }}>
-                <strong>💡 제니쌤의 암기 비법:</strong> {currentQ.tip}
+                <strong>💡 효진쌤의 암기 비법:</strong> {currentQ.tip}
               </div>
               <button className="btn-primary" style={{ marginTop: '1.5rem', width: '100%' }} onClick={nextQuestion}>
                 {currentIndex === questions.length - 1 ? '결과 확인하기' : '다음 문제로'}
