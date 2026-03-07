@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<!-- META -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- TITLE -->
+<title></title>
+<!-- CSS -->
+<link rel="stylesheet" href="/common/css/xe.min.css?20170417131534" />
+<link rel="stylesheet" href="/common/js/plugins/ui/jquery-ui.min.css?20170417131534" />
+<link rel="stylesheet" href="/modules/message/skins/xedition/css/message.css?20170417131534" />
+<meta name="Description" content="인천광역시 계양구 소재 간호학원, 계산삼거리 본점, 작전점, 계산점, 간호조무사, 병원코디네이터 자격정보, 국비지원정보 등 제공">
+<meta name="Keywords" content="계양간호학원,간호학원,간호조무사,병원코디네이터,국비지원,국비훈련,내일배움카드,취업성공패키지">
+<meta property="og:type" content="website">
+<meta property="og:title" content="계양간호학원">
+<meta property="og:description" content="인천광역시 계양구 소재 간호학원, 계산삼거리 본점, 작전점, 계산점, 간호조무사, 병원코디네이터 자격정보, 국비지원정보 등 제공">
+<!-- JS -->
+<!--[if lt IE 9]><script src="/common/js/jquery-1.x.min.js?20170417131534"></script>
+<![endif]--><!--[if gte IE 9]><!--><script src="/common/js/jquery.min.js?20170417131534"></script>
+<!--<![endif]--><script src="/common/js/x.min.js?20170417131534"></script>
+<script src="/common/js/xe.min.js?20170417131534"></script>
+<!-- RSS -->
+<!-- ICON -->
+<link rel="shortcut icon" href="http://www.keyangnurse.com/files/attach/xeicon/favicon.ico" /><link rel="apple-touch-icon" href="http://www.keyangnurse.com/files/attach/xeicon/mobicon.png" />
+<meta name="viewport" content="width=1240">
+<link rel="canonical" href="http://www.keyangnurse.com/index.php?module=file&act=procFileDownload&file_srl=1529&sid=5af1948b0d7ce17784550ea4bd1987f2&module_srl=156" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://www.keyangnurse.com/index.php?module=file&act=procFileDownload&file_srl=1529&sid=5af1948b0d7ce17784550ea4bd1987f2&module_srl=156" /><script>
+//<![CDATA[
+var current_url = "http://www.keyangnurse.com/?module=file&act=procFileDownload&file_srl=1529&sid=5af1948b0d7ce17784550ea4bd1987f2&module_srl=156";
+var request_uri = "http://www.keyangnurse.com/";
+var current_mid = "";
+var waiting_message = "서버에 요청 중입니다. 잠시만 기다려주세요.";
+var ssl_actions = new Array();
+var default_url = "http://www.keyangnurse.com/";
+xe.current_lang = "ko";
+xe.cmd_find = "찾기";
+xe.cmd_cancel = "취소";
+xe.cmd_confirm = "확인";
+xe.msg_no_root = "루트는 선택 할 수 없습니다.";
+xe.msg_no_shortcut = "바로가기는 선택 할 수 없습니다.";
+xe.msg_select_menu = "대상 메뉴 선택";
+//]]>
+</script>
+</head>
+<body>
+<div id="access">
+	<div class="login-header">
+		<p>OOPS!</p>
+		<h1>요청한 파일을 찾을 수 없습니다.</h1>
+	</div>
+	<div class="login-body">
+		<p><a href="/index.php?act=dispMemberLoginForm">로그인</a></p>
+	</div>
+	<div class="login-footer">
+		<a href="/index.php?act=dispMemberFindAccount">ID/PW 찾기</a>
+		<span class="bar">|</span>
+		<a href="/index.php?act=dispMemberSignUpForm">회원가입</a>
+	</div>
+</div>
+<!-- ETC -->
+<div class="wfsr"></div>
+<script src="/addons/autolink/autolink.js?20170417131534"></script><script src="/common/js/plugins/ui/jquery-ui.min.js?20170417131534"></script><script src="/common/js/plugins/ui/jquery.ui.datepicker-ko.js?20170417131534"></script><script src="/addons/resize_image/js/resize_image.min.js?20170417131534"></script></body>
+</html>

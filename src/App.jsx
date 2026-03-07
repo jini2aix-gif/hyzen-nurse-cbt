@@ -254,13 +254,18 @@ function App() {
   const [wrongNoteIds, setWrongNoteIds] = useState([]);
 
   const startNewExam = () => {
-    // 105 unique random questions from the 315 pool
+    // 전체 문제 DB를 복사합니다.
     const pool = [...questionsData];
-    const shuffled = [];
-    while (shuffled.length < 105 && pool.length > 0) {
-      const randomIndex = Math.floor(Math.random() * pool.length);
-      shuffled.push(pool.splice(randomIndex, 1)[0]);
+
+    // 피셔-예이츠(Fisher-Yates) 셔플 알고리즘으로 완벽한 무작위 섞기 수행
+    for (let i = pool.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [pool[i], pool[j]] = [pool[j], pool[i]];
     }
+
+    // 가장 앞의 105문제를 추출하여 모의고사 생성 (중복 절대 없음)
+    const shuffled = pool.slice(0, 105);
+
     setActiveQuestions(shuffled);
     setMode('quiz');
     setFinalScore(0);
